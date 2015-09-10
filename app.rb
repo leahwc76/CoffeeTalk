@@ -2,6 +2,11 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require './models'
 require 'rack-flash'
-require './user'
+require 'bundler/setup'
 
-set :database, "sqlite3:coffeetlk.sqlite3"
+set :database, "sqlite3:coffeetalk.sqlite3"
+
+get '/' do 
+	erb :index
+	
+end
