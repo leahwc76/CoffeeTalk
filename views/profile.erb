@@ -1,6 +1,7 @@
 
 <H1><strong>YOUR PROFILE</strong></H1>
-<h2><%= @user.fname %></h2>
+<% @users.each do |user|
+<h2><%= @users.fname %></h2>
 <h2><%= @user.lname %></h2>
 <h2><%= @user.phone %></h2>
 <h2><%= @user.email %></h2>

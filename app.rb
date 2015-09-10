@@ -39,5 +39,6 @@ end
 
 get '/allusers' do
 	@users = User.all
+	@posts = Post.all
 	erb :allusers
 end
