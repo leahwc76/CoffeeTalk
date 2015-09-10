@@ -1,8 +1,8 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require './models'
-require 'rack-flash'
 require 'bundler/setup'
+require 'rack-flash'
 
 set :database, "sqlite3:coffeetalk.sqlite3"
 
