@@ -1,11 +1,32 @@
 <!-- create feed *** leah this is just a rough draft don't panic  *****-->
 
- --><h1><%= @user.posts.all %></h1>
+ <h1>FEED</h1>
+ 
 
 
-<!-- # create follow and friends links
- -->
+
 <p>
 <a href= "/friends">Friends</a>
 <a href= "/follow">Follow</a>
 </p>
+
+
+
+
+ <% @posts.each do |post| %>
+     <h2><%= post.user.fname %> <%= post.user.lname %></h2>
+     <h3><%= post.title %></h3>
+     <p><%= post.body %></p>
+     <p><%= post.user.fname %></p>
+     <hr>
+ <% end %>
+
+
+<!--
+<% @users.each do |user| %>
+     <h3><%= user.fname %> <%= user.lname %></h3>
+     <p><%= user.posts.last %></p>
+     <hr>
+<% end %>
+-->
+ 
