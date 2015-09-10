@@ -8,5 +8,4 @@ set :database, "sqlite3:coffeetalk.sqlite3"
 
 get '/' do 
 	erb :index
-	
 end

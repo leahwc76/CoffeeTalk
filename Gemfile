@@ -6,6 +6,5 @@ gem 'sinatra-activerecord'
 gem 'sqlite3'
 gem 'rake'
 gem 'mandrill-api'
-gem 'rack-flash'
+gem 'rack-flash3'
 gem 'pg'
-
