@@ -16,6 +16,7 @@
 				<a href="/allusers">Explore</a>
 			</nav>
 		</header>
+		<%= flash[:notice] if flash[:notice] %>
 		<%= yield %>
 	</body>
 </html>

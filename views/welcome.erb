@@ -1,8 +1,15 @@
-<h1>Hello, <!--user name--> </h1>
+<h1>Hello <%= @user.fname if @user %></h1>
 
 <!-- clock js/jquery-->
 <!-- weather -->
 
 <!-- text area/box -->
+<form>
+	<label for="post">Make a Post</label><br>
+	<textarea type="text" name="post"></textarea>
+	<br>
+	<br>
+	<input type="submit" value="Post">
+</form>
 
 <!-- 10 recent posts of logged in user -->
