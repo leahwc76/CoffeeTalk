@@ -11,21 +11,23 @@
 </p>
 
 
+<p>
 
 
- <% @posts.each do |post| %>
-     <h2><%= post.user.fname %> <%= post.user.lname %></h2>
+<% @posts.each do |post| %>
+     <h2><%= post.user ? post.user.fname : "Fix me in the Database!" %> <%= post.user.lname if post.user%></h2>
      <h3><%= post.title %></h3>
      <p><%= post.body %></p>
-     <p><%= post.user.fname %></p>
+     <p><%= post.user.fname if post.user %></p>
      <hr>
  <% end %>
-
-
-
+</p>
+<p>
 <% @users.each do |user| %>
      <h3><%= user.fname %> <%= user.lname %></h3>
      <p><%= user.posts.last %></p>
      <hr>
 <% end %>
+</p>
+
  
