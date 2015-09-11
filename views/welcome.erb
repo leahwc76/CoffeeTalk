@@ -4,19 +4,28 @@
 <!-- weather -->
 
 <!-- text area/box -->
-<form>
-	<label for="post">Make a Post</label><br>
-	<textarea type="text" name="post"></textarea>
-	<br>
-	<br>
-	<input type="submit" value="Post">
+<h2>Make a Post</h2>
+<form action="/post" method="POST">
+    <p>
+        <label for="title">Title</label><br>
+        <input type="text" name="title" placeholder="Title" required>
+    </p>
+    <p>
+        <label for="user_id">User ID</label><br>
+        <input type="number" name="user_id" placeholder="user_id" required>
+    </p>
+    <br>
+    <p>
+        <label for="body">Text Body</label><br>
+        <textarea type="text" name="body" placeholder="Text Body" required></textarea>
+    </p>
+    <br>
+    <input type="submit" value="Post">
 </form>
 
 <!-- 10 recent posts of logged in user -->
-
-
-<h2><%= @post.user.fname %> <%= post.user.lname %></h2>
-     <h3><%= post.title %></h3>
-     <p><%= post.body %></p>
-     <p><%= post.user.fname %></p>
-     <hr>
+<h3>10 Most Recent Posts</h3>
+<% @user.posts.each do |post| %>
+    <p><%= post.body %>
+    <hr>
+<% end %>

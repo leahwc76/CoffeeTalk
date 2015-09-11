@@ -76,7 +76,13 @@ get '/welcome' do
 	@post = Post.create(user_id: params["current_user"])
 	erb :welcome
 end
-
+post '/post' do
+    Post.create(title: params["title"],
+        body: params["body"],
+        user_id: params["user_id"]
+        )
+    redirect to '/welcome'
+end
 get '/allusers' do
 	@users = User.all
 	@posts = Post.all
