@@ -36,6 +36,12 @@ post '/sessions' do
 	end
 end
 
+get '/logout' do
+	session[:user_id] = nil
+	flash[:notice] = "Logged Out! See you soon!"
+	redirect to '/login'
+end
+
 get '/signup' do
 	erb :signup
 end
@@ -52,12 +58,13 @@ post '/create' do
 end
 
 get '/profile' do
-	@user = User.first # current_user
+	@user = current_user
 	erb :profile
 end
 
 get '/welcome' do
 	@user = current_user
+	@post = Post.find_by(user_id: params[:user_id])
 	erb :welcome
 end
 
