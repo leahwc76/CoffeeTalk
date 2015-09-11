@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	has_many :posts
-	has_one  :profile
+	has_one :profile
 end
 
 class Post < ActiveRecord::Base

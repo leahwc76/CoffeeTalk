@@ -14,8 +14,10 @@
 				<a href="/welcome">Home</a>
 				<a href="/profile">Profile</a>
 				<a href="/allusers">Explore</a>
+				<a href="/logout">Log Out</a>
 			</nav>
 		</header>
+		<%= flash[:notice] if flash[:notice] %>
 		<%= yield %>
 	</body>
 </html>

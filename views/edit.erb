@@ -1,0 +1,31 @@
+<h1>Edit Profile</h1>
+
+<form action="/profile/edit" method="POST">
+	<p> 
+		<label for="fname">First Name</label><br>
+		<input type="text" name="fname" value="<%= @user.fname %>" required>
+	</p>
+	<p> 
+		<label for="lname">Last Name</label><br>
+		<input type="text" name="lname" value="<%= @user.lname %>" required>
+	</p>
+	<p> 
+		<label for="phone">Phone #</label><br>
+		<input type="text" name="phone" value="<%= @user.phone %>">
+	</p>
+	<p> 
+		<label for="email">Email</label><br>
+		<input type="email" name="email" value="<%= @user.email %>" required>
+	</p>
+	<p> 
+		<label for="username">Username</label><br>
+		<input type="text" name="username" value="<%= @user.username %>" required>
+	</p>
+	<p> 
+		<label for="password">Password</label><br>
+		<input type="password" name="password" value="<%= @user.password %>" required>
+	</p>
+	<p> 
+		<input type="submit" value="Update">
+	</p>
+</form>
