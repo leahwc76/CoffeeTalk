@@ -72,8 +72,9 @@ post '/profile' do
 
 get '/welcome' do
 	@user = current_user
-	 erb :welcome
+	erb :welcome
 end
+
 post '/post' do
     Post.create(title: params["title"],
         body: params["body"],
@@ -81,8 +82,34 @@ post '/post' do
         )
     redirect to '/welcome'
 end
+
 get '/allusers' do
 	@users = User.all
 	@posts = Post.all
 	erb :allusers
+end
+
+get '/users/:id' do
+	begin
+		@user = User.find(params[:id])
+		erb :allusers
+	rescue
+		flash[:notice] = "That user does not exist."
+		redirect to "/"
+	end
+end
+
+get '/follow/:id' do
+	@relationship = Relationship.create(follower_id: current_user.id, 
+										followed_id: params[:id])
+	flash[:notice] = "Followed!"
+	redirect to '/explore'
+end
+
+get '/unfollow/:id' do
+	@relationship = Relationship.find_by(follower_id: current_user.id,
+										followed_id: params[:id])
+	@relationship.destroy
+	flash[:notice] = "Unfollowed!"
+	redirect to '/welcome'
 end
