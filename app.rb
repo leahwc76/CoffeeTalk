@@ -24,14 +24,23 @@ post '/create' do
 		phone: params["phone"],
 		email: params["email"],
 		username: params["username"],
-		password: params["password"]
-		)
+		password: params["password"])
 	redirect to '/welcome'
 end
 
 get '/profile' do
 	erb :profile
 end
+
+post '/profile' do
+	Profile.create(age: params["age"], 
+		city: params["city"], 
+		occupation: params["occupation"],
+	    user_id: params["user_id"]
+		)
+	    # erb :profile
+	    redirect to '/welcome'
+	end
 
 get '/welcome' do
 	erb :welcome
