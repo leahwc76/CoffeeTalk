@@ -73,7 +73,7 @@ post '/profile' do
 
 get '/welcome' do
 	@user = current_user
-	@post = Post.find_by(user_id: params[:user_id])
+	@post = Post.create(user_id: params["current_user"])
 	erb :welcome
 end
 
