@@ -67,8 +67,7 @@ post '/profile' do
 		occupation: params["occupation"],
 	    user_id: params["user_id"]
 		)
-	    # erb :profile
-	    redirect to '/welcome'
+	   redirect to '/welcome'
 	end
 
 get '/welcome' do

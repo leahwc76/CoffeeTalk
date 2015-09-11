@@ -9,6 +9,17 @@
 </p>
 
 <h1>Listing Users</h1>
+
+<p>
+<% @posts.each do |post| %>
+     <h2><%= post.user ? post.user.fname : "Fix me in the Database!" %> <%= post.user.lname if post.user%></h2>
+     <h3><%= post.title %></h3>
+     <p><%= post.body %></p>
+     <p><%= post.user.fname if post.user %></p>
+     <hr>
+ <% end %>
+</p>
+
 <% @users.each do |user| %>
 	<p><a href="/users/<%= user.id %>"><%= user.fname %></a> 
 	<% if current_user and current_user != user %>
@@ -20,7 +31,6 @@
 	<% end %>
 	</p>
 <% end %>
-
  
 <% @posts.each do |post| %>
     <h2><%= post.user ? post.user.fname : "Fix me in the Database!" %> <%= post.user.lname if post.user%></h2>
