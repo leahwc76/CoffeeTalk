@@ -1,21 +1,25 @@
 
-<H1><strong>YOUR PROFILE</strong></H1>
-<% @users.each do |user|
-<h2><%= @users.fname %></h2>
-<h2><%= @user.lname %></h2>
-<h2><%= @user.phone %></h2>
-<h2><%= @user.email %></h2>
-<h2><%= @user.username %></h2>
-<h2><%= @user.password%></h2>  
-<h2><%= @user.posts %></h2>
-
-
-
-
-
-	<!-- t.string :fname
-  		t.string :lname
-  		t.string :phone
-  		t.string :email
-  		t.string :username
-  		t.string :password -->
+<H1><strong>Please create a Profile</strong></H1>
+<form action="/profile" method="POST">
+	<p> 
+		<label for="age">Age:</label><br>
+		<input type="number" name="age" placeholder="age" required>
+	</p>
+	<p> 
+		<label for="city">City:</label><br>
+		<input type="text" name="city" placeholder="city" required>
+	</p>
+	<p> 
+		<label for="occupation">Occupation:</label><br>
+		<input type="text" name="occupation" placeholder="occupation">
+	</p>
+	
+	<p> 
+		<label for="user_id">Username</label><br>
+		<input type="text" name="user_id" placeholder="user_id" required>
+	</p>
+	
+	<p> 
+		<input type="submit" value="Create/Update">
+	</p>
+</form>
