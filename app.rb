@@ -73,10 +73,16 @@ post '/profile' do
 
 get '/welcome' do
 	@user = current_user
-	@post = Post.find_by(user_id: params[:user_id])
+	 # @post = Post.find_by(user_id: params[:user_id])
 	erb :welcome
 end
-
+post '/post' do
+    Post.create(title: params["title"],
+        body: params["body"],
+        user_id: params["user_id"]
+        )
+    redirect to '/welcome'
+end
 get '/allusers' do
 	@users = User.all
 	@posts = Post.all
