@@ -67,19 +67,17 @@ post '/profile' do
 		occupation: params["occupation"],
 	    user_id: params["user_id"]
 		)
-	    # erb :profile
-	    redirect to '/welcome'
+	   redirect to '/welcome'
 	end
 
 get '/welcome' do
 	@user = current_user
-	 # @post = Post.find_by(user_id: params[:user_id])
-	erb :welcome
+	 erb :welcome
 end
 post '/post' do
     Post.create(title: params["title"],
         body: params["body"],
-        user_id: params["user_id"]
+        user_id: current_user.id
         )
     redirect to '/welcome'
 end
