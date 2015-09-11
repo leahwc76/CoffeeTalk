@@ -1,8 +1,6 @@
 <!-- create feed *** leah this is just a rough draft don't panic  *****-->
 
- <h1>FEED</h1>
- 
-
+<h1>FEED</h1>
 
 
 <p>
@@ -10,22 +8,25 @@
 <a href= "/follow">Follow</a>
 </p>
 
-
-
-
- <% @posts.each do |post| %>
-     <h2><%= post.user.fname %> <%= post.user.lname %></h2>
-     <h3><%= post.title %></h3>
-     <p><%= post.body %></p>
-     <p><%= post.user.fname %></p>
-     <hr>
- <% end %>
-
-
-
+<h1>Listing Users</h1>
 <% @users.each do |user| %>
-     <h3><%= user.fname %> <%= user.lname %></h3>
-     <p><%= user.posts.last %></p>
-     <hr>
+	<p><a href="/users/<%= user.id %>"><%= user.fname %></a> 
+	<% if current_user and current_user != user %>
+		<% if current_user and !current_user.following.include?(user) %>
+			(<a href="/follow/<%= user.id %>">follow</a>)
+		<% else %>
+			(<a href="/unfollow/<%= user.id %>">unfollow</a>)
+		<% end %>
+	<% end %>
+	</p>
 <% end %>
+
  
+<% @posts.each do |post| %>
+    <h2><%= post.user ? post.user.fname : "Fix me in the Database!" %> <%= post.user.lname if post.user%></h2>
+    <h3><%= post.title %></h3>
+    <p><%= post.body %></p>
+    <p><%= post.user.fname if post.user %></p>
+    <hr>
+<% end %>
+</p>
