@@ -76,7 +76,8 @@ get '/show' do
 	if @user != Profile.all
 		flash[:notice] = "Please Create a Profile!"
 		redirect to '/profile'
-
+	else 
+		redirect to '/show'
 	end
 	erb :show
 end
@@ -113,7 +114,7 @@ post '/post' do
         body: params["body"],
         user_id: current_user.id
         )
-    redirect to '/show'
+    redirect to '/welcome'
 end
 
 get '/allusers' do
