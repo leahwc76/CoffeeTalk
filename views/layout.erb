@@ -9,15 +9,19 @@
 	<body>
 		<header>
 			<nav>
-				<a href="/signup">Sign Up</a>
-				<a href="/login">Log In</a>
-				<a href="/welcome">Home</a>
-				<a href="/profile">Profile</a>
-				<a href="/allusers">Explore</a>
-				<a href="/logout">Log Out</a>
+				<% if current_user %>
+					<a href="/welcome">Home</a>
+					<a href="/show">Profile</a>
+					<a href="/profile">Settings</a>
+					<a href="/allusers">Explore</a>
+					<a href="/logout">Log Out</a>
+				<% else %>
+					<a href="/signup">Sign Up</a>
+					<a href="/login">Log In</a>
+				<% end %>
 			</nav>
 		</header>
-		<%= flash[:notice] if flash[:notice] %>
-		<%= yield %>
+			<%= flash[:notice] if flash[:notice] %>
+			<%= yield %>
 	</body>
 </html>

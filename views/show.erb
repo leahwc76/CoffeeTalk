@@ -1,0 +1,9 @@
+<h1>Hello <%= @user.fname if @user %></h1>
+
+<h3>Profile</h3>
+<p>Age:</p>
+<p><%= @user.profile.age if @user %></p>
+<p>City:</p>
+<p><%= @user.profile.city if @user %></p>
+<p>Occupation:</p>
+<p><%= @user.profile.occupation if @user %></p>

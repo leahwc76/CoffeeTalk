@@ -1,3 +1,5 @@
+<h1>Hello <%= @user.fname if @user %></h1>
+
 <H1><strong>Please create a Profile</strong></H1>
 <form action="/profile" method="POST">
 	<p> 
@@ -22,3 +24,13 @@
 		<input type="submit" value="Create/Update">
 	</p>
 </form>
+
+<a href="/edit">Edit/Delete</a>
+
+<h3>Profile</h3>
+<p>Age:</p>
+<p><%= @user.profile.age if @user %></p>
+<p>City:</p>
+<p><%= @user.profile.city if @user %></p>
+<p>Occupation:</p>
+<p><%= @user.profile.occupation if @user %></p>
