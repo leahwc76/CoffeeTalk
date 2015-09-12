@@ -1,42 +1,32 @@
-<!-- create feed *** leah this is just a rough draft don't panic  *****-->
-
 <h1>FEED</h1>
 
+<h3>Friends</h3>
+<% @relationships.each do |relationship| %>
+    <ul>
+        <li><%= relationship.followed_id %></li>
+    </ul>
+<% end %>
 
-<p>
-<a href= "/friends">Friends</a>
-<a href= "/follow">Follow</a>
-</p>
-
-<h1>Listing Users</h1>
-
-<p>
-<% @posts.each do |post| %>
-     <h2><%= post.user ? post.user.fname : "Fix me in the Database!" %> <%= post.user.lname if post.user%></h2>
-     <h3><%= post.title %></h3>
-     <p><%= post.body %></p>
-     <p><%= post.user.fname if post.user %></p>
-     <hr>
- <% end %>
-</p>
+<h3>Follow</h3>
 
 <% @users.each do |user| %>
-	<p><a href="/users/<%= user.id %>"><%= user.fname %></a> 
-	<% if current_user and current_user != user %>
-		<% if current_user and !current_user.following.include?(user) %>
-			(<a href="/follow/<%= user.id %>">follow</a>)
-		<% else %>
-			(<a href="/unfollow/<%= user.id %>">unfollow</a>)
-		<% end %>
-	<% end %>
-	</p>
+    <p><a href="/users/<%= user.id %>"><%= user.full_name %></a> 
+    <% if current_user != user %>
+        <% if current_user and !current_user.following.include?(user) %>
+            (<a href="/follow/<%= user.id %>">follow</a>)
+        <% else %>
+            (<a href="/unfollow/<%= user.id %>">unfollow</a>)
+        <% end %>
+    <% end %>
+    </p>
 <% end %>
- 
+
+
+<p>
 <% @posts.each do |post| %>
-    <h2><%= post.user ? post.user.fname : "Fix me in the Database!" %> <%= post.user.lname if post.user%></h2>
-    <h3><%= post.title %></h3>
-    <p><%= post.body %></p>
-    <p><%= post.user.fname if post.user %></p>
-    <hr>
-<% end %>
+     <h3><%= post.title %></h3>
+     <p><%= post.body %></p>
+     <p><%= post.user.full_name if post.user %></p>
+     <hr>
+ <% end %>
 </p>

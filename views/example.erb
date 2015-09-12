@@ -24,3 +24,29 @@
     <hr>
 <% end %>
 </p> -->
+
+<!-- <h2><%= post.user ? post.user.fname : "Fix me in the Database!" %> <%= post.user.lname if post.user%></h2> -->
+
+<% @users = User.all %>
+    <% @users.each do |user| %>
+    <p><a href="/users/<%= user.id %>"><%= user.username %></a></p>
+    <hr>
+<% end %>
+
+
+
+<p>
+<% @relationships.each do |relationship| %>
+    <% relationship.user ? relationship.user.fname 
+    <h3><%= relationship.followed_id %></h3>
+    <p><%= relationship.followed_id.full_name %></p>
+    <% end %>
+</p>
+
+<h3>Profile</h3>
+<% @user.profiles.each do |profile| %>
+    <p><%= profile.age %></p>
+        <p><%= profile.city %></p>
+        <p><%= profile.occupation %></p>
+    <hr>
+<% end %>

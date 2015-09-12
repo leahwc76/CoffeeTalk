@@ -65,10 +65,37 @@ post '/profile' do
 	Profile.create(age: params["age"], 
 		city: params["city"], 
 		occupation: params["occupation"],
-	    user_id: params["user_id"]
+	    user_id: current_user.id
 		)
-	   redirect to '/welcome'
-	end
+	   redirect to '/profile'
+end
+
+get '/show' do
+	@user = current_user
+	erb :show
+end
+
+get '/edit' do
+	@user = current_user
+	erb :edit
+end
+
+post '/profile/edit' do
+	current_user.update(params[:user])
+	flash[:notice] = "Profile Updated"
+	redirect to '/edit'
+end
+
+post '/edit/delete' do
+	user = current_user
+	current_user.destroy
+	redirect to '/delete'
+end
+
+get '/delete' do
+	flash[:notice] = "Account Deleted"
+	erb :delete
+end
 
 get '/welcome' do
 	@user = current_user
@@ -86,16 +113,17 @@ end
 get '/allusers' do
 	@users = User.all
 	@posts = Post.all
+	@relationships = Relationship.all
 	erb :allusers
 end
 
 get '/users/:id' do
 	begin
-		@user = User.find(params[:id])
-		erb :allusers
+		@users = User.find(params[:id])
+		erb :show
 	rescue
 		flash[:notice] = "That user does not exist."
-		redirect to "/"
+		redirect to "/allusers"
 	end
 end
 
@@ -103,7 +131,7 @@ get '/follow/:id' do
 	@relationship = Relationship.create(follower_id: current_user.id, 
 										followed_id: params[:id])
 	flash[:notice] = "Followed!"
-	redirect to '/explore'
+	redirect to '/allusers'
 end
 
 get '/unfollow/:id' do
@@ -111,5 +139,5 @@ get '/unfollow/:id' do
 										followed_id: params[:id])
 	@relationship.destroy
 	flash[:notice] = "Unfollowed!"
-	redirect to '/welcome'
+	redirect to '/allusers'
 end
