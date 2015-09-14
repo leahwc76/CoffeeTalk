@@ -107,15 +107,17 @@ post '/profile/edit' do
 end
 
 get '/delete' do
+	@user = current_user
+	@posts = Post.all
+	@profiles = Profile.all
 	erb :delete
 end
 
 post '/edit/delete' do
-	@user = current_user
-	current_user.destroy
-	session[:user_id] = nil
-	flash[:notice] = "Account Deleted"
-	redirect to '/signup'
+		current_user.destroy
+		session[:user_id] = nil
+		flash[:notice] = "Account Deleted"
+		redirect to '/signup'
 end
 
 get '/explore' do
