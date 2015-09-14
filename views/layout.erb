@@ -3,24 +3,40 @@
 	<head>
 		<title>Coffee Talk</title>
 		<meta charset="utf-8">
-		<!-- <link type="text/css" rel="stylesheet" href="/css/layout.css"> -->
+		<link type="text/css" rel="stylesheet" href="/css/main.css">
 		<script type="text/javascript" src="/js/jquery-2.1.4.js"></script>
 	</head>
 	<body>
 		<header>
 			<nav>
 				<% if current_user %>
-					<a href="/home_post">Home</a>
-					<a href="/create">Settings</a>
-					<a href="/explore">Explore</a>
-					<a href="/logout">Log Out</a>
+				<ul>
+					<li>
+						<a href="/home_post">Home</a>
+					</li>
+					<li>
+						<a href="/create">Settings</a>
+					</li>
+					<li>
+						<a href="/explore">Explore</a>
+					</li>
+					<li>
+						<a href="/logout">Log Out</a>
+					</li>
 				<% else %>
-					<a href="/signup">Sign Up</a>
-					<a href="/login">Log In</a>
+					<li>
+						<a href="/signup">Sign Up</a>
+					</li>
+					<li>
+						<a href="/login">Log In</a>
+					</li>
+				</ul>
 				<% end %>
 			</nav>
 		</header>
+		<main>
 			<%= flash[:notice] if flash[:notice] %>
 			<%= yield %>
+		</main>
 	</body>
 </html>

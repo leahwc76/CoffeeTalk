@@ -1,27 +1,29 @@
-<h1>FEED</h1>
+<div id="explore">
+    <h1>Explore Feed</h1>
 
-<h3>Follow</h3>
-
-<% @users.each do |user| %>
-    <p><a href="/users/<%= user.id %>"><%= user.full_name %></a> 
-    <% if current_user and current_user != user %>
-        <% if current_user and !current_user.following.include?(user) %>
-            (<a href="/follow/<%= user.id %>">follow</a>)
-        <% else %>
-            (<a href="/unfollow/<%= user.id %>">unfollow</a>)
+    <div id="feedFollow">
+        <h2>Follow</h2>
+        <% @users.each do |user| %>
+            <p><a href="/users/<%= user.id %>"><%= user.full_name %></a> 
+            <% if current_user and current_user != user %>
+                <% if current_user and !current_user.following.include?(user) %>
+                    (<a href="/follow/<%= user.id %>">follow</a>)
+                <% else %>
+                    (<a href="/unfollow/<%= user.id %>">unfollow</a>)
+                <% end %>
+            <% end %>
+            </p>
         <% end %>
-    <% end %>
-    </p>
-<% end %>
+        <a href="/show">See Followed Friends</a>
+    </div>
 
-<a href="/friends">friends</a>
-
-
-<p>
-<% @posts.each do |post| %>
-     <h3><%= post.title %></h3>
-     <p><%= post.body %></p>
-     <p><%= post.user.full_name if post.user %></p>
-     <hr>
- <% end %>
-</p>
+    <div id="feedPosts">
+        <h2>Posts</h2>
+        <% @posts.each do |post| %>
+            <h3><%= post.title %></h3>
+            <p><%= post.body %></p>
+            <p><%= post.user.full_name if post.user %>, <%= post.created_at %></p>
+            <hr>
+         <% end %>
+    </div>
+</div>

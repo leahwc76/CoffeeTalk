@@ -1,0 +1,107 @@
+body {
+	background-color: #FFFFFF;
+	margin: 0;
+}
+
+nav {
+	text-align: center;
+}
+
+li {
+	list-style: none;
+	display: inline;
+}
+
+a {
+	text-decoration: none;
+}
+
+#login {
+	width: 300px;
+	height: 240px;
+	/*border: 1px solid black;*/
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+}
+
+#signup {
+	width: 480px;
+	height: 450px;
+	/*border: 1px solid black;*/
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+}
+
+#homePost {
+	width: 600px;
+	/*border: 1px solid black;*/
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+}
+
+#createProfile {
+	width: 600px;
+	/*border: 1px solid black;*/
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+}
+
+#showProfile {
+	width: 600px;
+	/*border: 1px solid black;*/
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+}
+
+#editProfile {
+	width: 600px;
+	/*border: 1px solid black;*/
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+}
+
+#deleteProfile {
+	width: 600px;
+	/*border: 1px solid black;*/
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+}
+
+#explore {
+	width: 700px;
+	/*border: 1px solid black;*/
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+}
+
+#feedFollow {
+	width: 225px;
+	float: left;
+	position: relative;
+	/*border: 1px solid black;*/
+	text-align: center;
+	padding: 5px;
+	margin-left: 10px;
+}
+
+#feedPosts {
+	width: 400px;
+	float: right;
+	position: relative;
+	/*border: 1px solid black;*/
+	text-align: center;
+	padding: 5px;
+	margin-right: 10px;
+}
+
+hr {
+	width: 100px;
+}
