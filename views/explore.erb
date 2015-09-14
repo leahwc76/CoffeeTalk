@@ -1,17 +1,10 @@
 <h1>FEED</h1>
 
-<h3>Friends</h3>
-<% @relationships.each do |relationship| %>
-    <ul>
-        <li><%= relationship.followed_id %></li>
-    </ul>
-<% end %>
-
 <h3>Follow</h3>
 
 <% @users.each do |user| %>
     <p><a href="/users/<%= user.id %>"><%= user.full_name %></a> 
-    <% if current_user != user %>
+    <% if current_user and current_user != user %>
         <% if current_user and !current_user.following.include?(user) %>
             (<a href="/follow/<%= user.id %>">follow</a>)
         <% else %>
@@ -20,6 +13,8 @@
     <% end %>
     </p>
 <% end %>
+
+<a href="/friends">friends</a>
 
 
 <p>

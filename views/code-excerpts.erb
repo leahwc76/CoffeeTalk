@@ -27,26 +27,55 @@
 
 <!-- <h2><%= post.user ? post.user.fname : "Fix me in the Database!" %> <%= post.user.lname if post.user%></h2> -->
 
-<% @users = User.all %>
+
+<!-- <h3>Profile</h3>
+<p>Age:</p>
+<p><%= @user.profile.age if @user %></p>
+<p>City:</p>
+<p><%= @user.profile.city if @user %></p>
+<p>Occupation:</p>
+<p><%= @user.profile.occupation if @user %></p>
+ -->
+
+
+<!--<% if current_user = @user %>
+    <h3>Profile</h3>
+    <p>Age:</p>
+    <p><%= user.profile.age %></p>
+    <p>City:</p>
+    <p><%= user.profile.city %></p>
+    <p>Occupation:</p>
+    <p><%= user.profile.occupation %></p>
+<% elsif %>
+    <p>please create a profile</p>
+<% end %> -->
+
+
+<!-- <% @users = User.all %>
     <% @users.each do |user| %>
     <p><a href="/users/<%= user.id %>"><%= user.username %></a></p>
     <hr>
-<% end %>
+<% end %> -->
 
+<!-- <h3>Friends</h3>
+<% @relationships.each do |relationship| %>
+    <ul>
+        <li><%= relationship.followed_id %></li>
+    </ul>
+<% end %> -->
 
-
-<p>
+<!-- <p>
 <% @relationships.each do |relationship| %>
     <% relationship.user ? relationship.user.fname 
     <h3><%= relationship.followed_id %></h3>
     <p><%= relationship.followed_id.full_name %></p>
     <% end %>
-</p>
+</p> -->
 
-<h3>Profile</h3>
+<!-- <h3>Profile</h3>
 <% @user.profiles.each do |profile| %>
     <p><%= profile.age %></p>
         <p><%= profile.city %></p>
         <p><%= profile.occupation %></p>
     <hr>
-<% end %>
+<% end %> -->
