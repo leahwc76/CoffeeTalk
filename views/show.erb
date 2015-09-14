@@ -1,9 +1,19 @@
 <h1>Hello <%= @user.fname if @user %></h1>
 
+
+<% @user.profile.each do |profile| %>
 <h3>Profile</h3>
-<p>Age:</p>
-<p><%= @user.profile.age if @user %></p>
-<p>City:</p>
-<p><%= @user.profile.city if @user %></p>
-<p>Occupation:</p>
-<p><%= @user.profile.occupation if @user %></p>
+	<p>Age:</p>
+    <p><%= profile.age %></p>
+    <p>City:</p>
+    <p><%= profile.city %></p>
+    <p>Occupation:</p>
+    <p><%= profile.occupation %></p>
+<% end %>
+
+<h3>Friends</h3>
+<ol>
+<% @user.following.each do |user| %>
+    <li><%= user.fname %></li>
+<% end %>
+</ol>
