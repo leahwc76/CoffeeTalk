@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	has_many :posts
-	has_one :profile
+	has_many :profile
 	has_many :active_relationships, class_name: "Relationship", foreign_key: :follower_id, dependent: :destroy
 	has_many :passive_relationships, class_name: "Relationship", foreign_key: :followed_id, dependent: :destroy
 	has_many :following, through: :active_relationships, source: :followed
@@ -8,21 +8,22 @@ class User < ActiveRecord::Base
 
 	def full_name
 		if !fname.nil? && !lname.nil?
-			fname + " " + lname
+			fname.capitalize + " " + lname.capitalize
 		elsif !fname.nil?
-			fname
+			fname.capitalize
 		elsif !lname.nil?
-			lname
+			lname.capitalize
 		end
 	end
 end
 
 class Post < ActiveRecord::Base
-	belongs_to :user
+	belongs_to :user, dependent: :destroy
+	validates :body, length: { maximum: 150 }
 end
 
 class Profile < ActiveRecord::Base
-	belongs_to :user
+	belongs_to :user, dependent: :destroy
 end
 
 class Relationship < ActiveRecord::Base

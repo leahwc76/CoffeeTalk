@@ -1,34 +1,36 @@
-<h1>Edit Profile</h1>
+<div id="editProfile">
+	<h2>Edit Account</h2>
+		<form action="/profile/edit" method="POST">
+			<p> 
+				<label for="fname">First Name </label>
+				<input type="text" name="[user]fname" value="<%= @user.fname %>" required>
+			</p>
+			<p> 
+				<label for="lname">Last Name </label>
+				<input type="text" name="[user]lname" value="<%= @user.lname %>" required>
+			</p>
+			<p> 
+				<label for="phone">Phone # </label>
+				<input type="text" name="[user]phone" value="<%= @user.phone %>">
+			</p>
+			<p> 
+				<label for="email">Email </label>
+				<input type="email" name="[user]email" value="<%= @user.email %>" required>
+			</p>
+			<p> 
+				<label for="username">Username </label>
+				<input type="text" name="[user]username" value="<%= @user.username %>" required>
+			</p>
+			<p> 
+				<label for="password">Password </label> 
+				<input type="password" name="[user]password" value="<%= @user.password %>" required>
+			</p>
+			<p> 
+				<input type="submit" value="Update">
+			</p>
+		</form>
 
-<form action="/profile/edit" method="POST">
-	<p> 
-		<label for="fname">First Name</label><br>
-		<input type="text" name="[user]fname" value="<%= @user.fname %>" required>
-	</p>
-	<p> 
-		<label for="lname">Last Name</label><br>
-		<input type="text" name="[user]lname" value="<%= @user.lname %>" required>
-	</p>
-	<p> 
-		<label for="phone">Phone #</label><br>
-		<input type="text" name="[user]phone" value="<%= @user.phone %>">
-	</p>
-	<p> 
-		<label for="email">Email</label><br>
-		<input type="email" name="[user]email" value="<%= @user.email %>" required>
-	</p>
-	<p> 
-		<label for="username">Username</label><br>
-		<input type="text" name="[user]username" value="<%= @user.username %>" required>
-	</p>
-	<p> 
-		<label for="password">Password</label><br>
-		<input type="password" name="[user]password" value="<%= @user.password %>" required>
-	</p>
-	<p> 
-		<input type="submit" value="Update">
-	</p>
-</form>
+	<p><a href="/show">Show Profile</a></p>
 
-
-<a href="/delete">Delete</a>
+	<a href="/delete">Delete Account</a>
+</div>

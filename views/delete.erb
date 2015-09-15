@@ -1,6 +1,11 @@
-<h1>Are You Sure You Want To Delete Your Account?</h1>
+<div id="deleteProfile">
+	<h2><%= @user.fname.capitalize if @user %>, Are You Sure You Want To Delete Your Account?</h2>
 
+	<form action="/edit/delete" method="POST">
+		<input type="submit" value="Delete">
+	</form>
 
-<form action="/edit/delete" method="POST">
-	<input type="submit" value="Delete">
-</form>
+	<p><a href="/show">Show Profile</a></p>
+
+	<p><a href="/edit">Edit Account Details</a></p>
+</div>

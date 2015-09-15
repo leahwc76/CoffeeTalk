@@ -1,0 +1,27 @@
+<div id="homePost">
+    <h1>Hello <%= @user.fname.capitalize if @user %></h1>
+
+    <h2>Make a Post</h2>
+    <form action="/post" method="POST">
+        <p>
+            <label for="title">Title</label><br>
+            <input type="text" name="title" placeholder="Title" required>
+        </p>
+        <p>
+            <label for="body">Text</label><br>
+            <textarea type="text" name="body" placeholder="Text" required></textarea>
+        </p>
+        <br>
+        <input type="submit" value="Post">
+    </form>
+
+    <!-- 10 recent posts of logged in user -->
+
+    <h2>Posts</h2>
+    <% @user.posts.each do |post| %>
+            <h4><%= post.title %></h4>
+            <p><%= post.body %></p>
+            <p><%= post.created_at %></p>
+        <hr>
+    <% end %>
+</div>

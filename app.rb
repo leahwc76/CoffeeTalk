@@ -16,12 +16,27 @@ def current_user
 	end
 end
 
+get '/signup' do
+	erb :signup
+end
+
+post '/signup' do
+	user = User.create(fname: params["fname"], 
+		lname: params["lname"], 
+		phone: params["phone"],
+		email: params["email"],
+		username: params["username"],
+		password: params["password"])
+	session[:user_id] = user.id
+	redirect to '/home_post'
+end
+
 get '/' do 
-	erb :index
+	erb :login
 end
 
 get '/login' do
-	erb :index
+	erb :login
 end
 
 post '/sessions' do
@@ -29,7 +44,7 @@ post '/sessions' do
 	if user and user.password == params["password"]
 		session[:user_id] = user.id
 		flash[:notice] = "Logged In!"
-		redirect to '/welcome'
+		redirect to '/home_post'
 	else 
 		flash[:notice] = "There was a problem logging in!"
 		redirect to '/login'
@@ -42,23 +57,22 @@ get '/logout' do
 	redirect to '/login'
 end
 
-get '/signup' do
-	erb :signup
-end
-
-post '/create' do
-	User.create(fname: params["fname"], 
-		lname: params["lname"], 
-		phone: params["phone"],
-		email: params["email"],
-		username: params["username"],
-		password: params["password"])
-	redirect to '/welcome'
-end
-
-get '/profile' do
+get '/home_post' do
 	@user = current_user
-	erb :profile
+	erb :home_post
+end
+
+post '/post' do
+    Post.create(title: params["title"],
+        body: params["body"],
+        user_id: current_user.id
+        )
+    redirect to '/home_post'
+end
+
+get '/create' do
+	@user = current_user
+	erb :create
 end
 
 post '/profile' do
@@ -67,17 +81,16 @@ post '/profile' do
 		occupation: params["occupation"],
 	    user_id: current_user.id
 		)
-	   redirect to '/profile'
+	   redirect to '/create'
 end
 
 get '/show' do
 	@user = current_user
-	@profile = Profile.all
-	if @user != Profile.all
+	@profiles = Profile.all
+	profile = Profile.find_by(user_id: current_user.id)
+	if profile == nil
 		flash[:notice] = "Please Create a Profile!"
-		redirect to '/profile'
-	else 
-		redirect to '/show'
+		redirect to '/create'
 	end
 	erb :show
 end
@@ -93,44 +106,35 @@ post '/profile/edit' do
 	redirect to '/edit'
 end
 
-post '/edit/delete' do
-	user = current_user
-	current_user.destroy
-	redirect to '/delete'
-end
-
 get '/delete' do
-	flash[:notice] = "Account Deleted"
+	@user = current_user
+	@posts = Post.all
+	@profiles = Profile.all
 	erb :delete
 end
 
-get '/welcome' do
+post '/edit/delete' do
+		current_user.destroy
+		session[:user_id] = nil
+		flash[:notice] = "Account Deleted"
+		redirect to '/signup'
+end
+
+get '/explore' do
 	@user = current_user
-	erb :welcome
-end
-
-post '/post' do
-    Post.create(title: params["title"],
-        body: params["body"],
-        user_id: current_user.id
-        )
-    redirect to '/welcome'
-end
-
-get '/allusers' do
 	@users = User.all
 	@posts = Post.all
 	@relationships = Relationship.all
-	erb :allusers
+	erb :explore
 end
 
 get '/users/:id' do
 	begin
-		@users = User.find(params[:id])
+		@user = User.find(params[:id])
 		erb :show
 	rescue
 		flash[:notice] = "That user does not exist."
-		redirect to "/allusers"
+		redirect to "/explore"
 	end
 end
 
@@ -138,7 +142,7 @@ get '/follow/:id' do
 	@relationship = Relationship.create(follower_id: current_user.id, 
 										followed_id: params[:id])
 	flash[:notice] = "Followed!"
-	redirect to '/allusers'
+	redirect to '/explore'
 end
 
 get '/unfollow/:id' do
@@ -146,5 +150,5 @@ get '/unfollow/:id' do
 										followed_id: params[:id])
 	@relationship.destroy
 	flash[:notice] = "Unfollowed!"
-	redirect to '/allusers'
+	redirect to '/explore'
 end

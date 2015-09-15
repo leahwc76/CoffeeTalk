@@ -1,0 +1,26 @@
+<div id="createProfile">
+	<h1>Hello <%= @user.fname.capitalize if @user %></h1>
+
+	<h2>Create a Profile</h2>
+	<form action="/profile" method="POST">
+		<p> 
+			<label for="age">Age:</label><br>
+			<input type="number" name="age" placeholder="age" required>
+		</p>
+		<p> 
+			<label for="city">City:</label><br>
+			<input type="text" name="city" placeholder="city" required>
+		</p>
+		<p> 
+			<label for="occupation">Occupation:</label><br>
+			<input type="text" name="occupation" placeholder="occupation" required>
+		</p>	
+		<p> 
+			<input type="submit" value="Create/Update">
+		</p>
+	</form>
+
+	<p><a href="/show">Show Profile</a></p>
+
+	<p><a href="/edit">Edit Account Details</a></p>
+</div>
